@@ -1,4 +1,4 @@
-![seduc](/img/logo-seduc%20(1).png)
+![seduc](/img/logo-seduc-128px.png)
 
 ## Sistema de Provas com QR Code - SEDUC Goiás
 
