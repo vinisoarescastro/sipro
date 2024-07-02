@@ -1,3 +1,5 @@
+![seduc](/img/logo-seduc%20(1).png)
+
 ## Sistema de Provas com QR Code - SEDUC Goiás
 
 Este repositório contém a implementação de um sistema de provas desenvolvido para a Secretaria de Educação do Estado de Goiás (SEDUC). A aplicação gera provas com QR Codes e gabaritos, permitindo que professores utilizem a câmera de um celular para escanear o QR Code, identificar o aluno, ler o gabarito preenchido pelo aluno, comparar com o gabarito oficial, calcular a nota e registrar no sistema de provas.
