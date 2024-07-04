@@ -2,7 +2,7 @@ import qrcode
 import os
 
 # Dados do aluno
-nome = "Aluno Teste"
+nome = "Vinicius Soares"
 matricula = "1234678"
 
 # Cria o texto que será armazenado no QR Code
@@ -26,7 +26,7 @@ while True:
 qr = qrcode.QRCode(
     version=1,
     error_correction=qrcode.constants.ERROR_CORRECT_L,
-    box_size=10,
+    box_size=20,
     border=4,
 )
 qr.add_data(texto)
