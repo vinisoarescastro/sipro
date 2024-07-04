@@ -2,8 +2,8 @@ import qrcode
 import os
 
 # Dados do aluno
-nome = "Marcos Araujo"
-matricula = "12346789"
+nome = "Aluno Teste"
+matricula = "1234678"
 
 # Cria o texto que será armazenado no QR Code
 texto = f"Nome: {nome}, Matrícula: {matricula}"
