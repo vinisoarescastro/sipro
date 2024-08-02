@@ -35,7 +35,7 @@ while True:
         tamanho = height * width
         pretos = cv2.countNonZero(campo)
         percentual = round((pretos / tamanho) * 100, 2)
-        if percentual >=5:     # 5% preenchido para considerar marcado
+        if percentual >=15:     # 5% preenchido para considerar marcado
             cv2.rectangle(gabarito, (x, y), (x + w, y + h), (255, 0, 0), 2)
             respostas.append(resp[id])
 
