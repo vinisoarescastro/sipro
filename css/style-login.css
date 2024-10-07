@@ -6,29 +6,63 @@
 :root {
     --color-write: #fff;
     --color-black: #000;
+    --color-verde: #00AC4E;
     --color-background: #ececec;
     --color-button: #007BFF;
+    --color-button-press: #005dc0;
+
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;  
-    background: var(--color-background);
+    font-family: Arial, Helvetica, sans-serif;
 
-    display: flex;              /* define o display como flexivel */
-    justify-content: center;    /* alinha o conteudo no centro horizontal */
-    align-items: center;        /* alinha o conteudo no centro vertical */
-    height: 100vh;              /* 100% da altura da tela */
+    height: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: aquamarine;
 }
+
+.interface {
+    max-width: 1280px;  
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/**********************************
+HEADER
+***********************************/
+
+.header {
+    background-color: var(--color-button);
+    color: #fff;
+
+    padding: 20px 0;
+}
+
+/**********************************
+MAIN CONTAINER
+***********************************/
 
 .main-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+
+    background-image: url(../img/fachada-seduc-edit-85opacidade.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height: 80vh;
+    width: 100vw;
 }
 
-.img-container img {
+.main-container .img-container {
+    text-align: center;
+}
+
+.main-container .img-container img {
     width: 300px;
-    align-items: center;
 }
 
 .login-container {
@@ -39,7 +73,7 @@ body {
 
     width: 300px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgb(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
@@ -74,6 +108,10 @@ button {
     cursor: pointer;
 }
 
+button:hover {
+    background-color: var(--color-button-press)
+}
+
 a  {
     text-decoration: none;
 }
@@ -90,4 +128,28 @@ p#msg-erro {
     text-align: center;
     margin-top: 10px;
     border-radius: 5px;
+}
+
+
+/**********************************
+FOOOTER
+***********************************/
+
+.footer {
+    background-color: var(--color-button);
+    padding: 21px 0px;
+}
+
+.footer .interface{
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer .apps {
+    color: #fff;
+}
+
+.footer .apps p {
+    margin-bottom: 10px;
+    font-weight: 800;
 }
