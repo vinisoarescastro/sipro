@@ -1,0 +1,66 @@
+.usuario {
+    background-color: var(--color-azul-escuro);
+}
+
+.usuario .card-usuario {
+    display: flex;
+    align-items: center;
+}
+
+.usuario .img-usuario img {
+    width: 60px;
+    padding: 10px 0;
+    border-radius: 50%;
+}
+
+.usuario .txt-usuario {
+    margin-left: 10px;
+
+    color: #fff;
+}
+
+.usuario .txt-usuario h3 {
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+}
+
+.usuario .txt-usuario p {
+    font-size: 14px;
+    color: rgb(245, 245, 245);
+}
+
+.container-usuario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-usuario .config-usuario {
+    display: flex;
+    align-items: center;
+}
+
+.container-usuario .config-usuario button {
+    display: flex;
+    align-items: center;
+
+    background: transparent;
+    border: 1px solid #fff;
+}
+
+.container-usuario .config-usuario button:hover {
+    background-color: #fff;
+    color: var(--color-azul-escuro);
+}
+
+.container-usuario .config-usuario button i {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.container-usuario .config-usuario>i {
+    color: #fff;
+    margin-right: 25px;
+    font-size: 18px;
+}
+

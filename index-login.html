@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style-login.css">
+    <link rel="stylesheet" href="/css/style-login.css">
+    <link rel="stylesheet" href="/css/style-geral-interface.css">
+    <link rel="stylesheet" href="/css/style-section-footer.css">
+    <link rel="stylesheet" href="/css/style-section-header.css">
 
     <!-- SCRIPT -->
 
@@ -36,8 +39,13 @@
 
             <div class="login-container">
 
-                <h2>Sistema de Provas</h2>
-                <form action="#">
+                <div class="icon-utilizador">
+                    <img src="img/do-utilizador.png" alt="#">
+                </div>
+
+                <h2>Área de Acesso</h2>
+
+                <form id="loginForm">
                     <label for="emailCpf">E-mail ou CPF:</label>
                     <input type="text" id="emailCpf" name="emailCpf" required>
                     <label for="password">Senha:</label>
@@ -65,8 +73,8 @@
 
                 <p>Governo na palma da mão</p>
                 <div class="img-baixe-apps">
-                    <img src="img/google-play-v2.png" alt="Google Play">
-                    <img src="img/app-store-v2.png" alt="Apple Store">
+                    <img src="img/google-play-v2.png" alt="Google Play" class="img1">
+                    <img src="img/app-store-v2.png" alt="Apple Store" class="img2">
                 </div>
 
             </section>
@@ -75,6 +83,9 @@
         </div>
 
     </footer>
+
+
+    <script src="js/validacaoLogin.js" defer></script>
 
 </body>
 </html>

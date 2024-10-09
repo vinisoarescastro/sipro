@@ -1,0 +1,40 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color-write: #fff;
+    --color-black: #000;
+    --color-verde: #00AC4E;
+    --color-azul: #007BFF;
+    --color-azul-escuro: #005dc0;
+    --color-background: #ececec;
+}
+
+/*************************************************
+**************************************************/
+
+.footer {
+    background-color: var(--color-azul);
+    padding: 21px 0px;
+}
+
+.footer .interface{
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer .apps {
+    color: var(--color-write);
+}
+
+.footer .apps p {
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.footer .img-baixe-apps img.img1 {
+    margin-right: 5px;
+}
