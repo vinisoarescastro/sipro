@@ -1,0 +1,31 @@
+@media screen and (max-width: 650px) {
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    :root {
+        --color-write: #fff;
+        --color-black: #000;
+        --color-verde: #00AC4E;
+        --color-azul: #007BFF;
+        --color-azul-escuro: #005dc0;
+        --color-background: #ececec;
+    }
+    
+    /*************************************************
+    **************************************************/
+
+    .footer .interface {
+        flex-direction: column;
+        justify-content: space-between;
+
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer .apps p {
+        margin: 20px 0 10px 0; /* Cima esqueda baixo direta */
+        font-weight: 800;
+    }
+}

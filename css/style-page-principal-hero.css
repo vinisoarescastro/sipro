@@ -1,19 +1,19 @@
 .hero {
+    display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
 }
 
 .hero p {
-    padding: 40px 0;
+    margin: 20px 0;
 }
 
 .hero .servicos {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .hero .servicos .elemento-servicos {
@@ -24,14 +24,14 @@
 
     background: #00aeff;
 
-    flex: 2 2 calc(33.33% - 20px);
-
+    width: 30%;
     min-width: 100px;
     height: 100px;
     padding: 15px;
     margin: 5px;
 
     border-radius: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.267);
 
     position: relative;
 }
@@ -40,7 +40,9 @@
     position: relative;
     z-index: 2;
     color: #fff;
-    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 40px rgba(0, 0, 0, 0.5);
+
+    font-size: 26px;
 
 }
 
@@ -78,7 +80,29 @@
     background-position: center;
 }
 
+.hero .servicos .elemento-servicos.questoes::before {
+    background-color: rgba(6, 128, 6, 0.8);
+}
 
+.hero .servicos .elemento-servicos.provas::before {
+    background-color: rgba(228, 167, 0, 0.8);
+}
+
+.hero .servicos .elemento-servicos.simulados::before {
+    background-color: rgba(76, 0, 255, 0.8);
+}
+
+.hero .servicos .elemento-servicos.correcoes::before {
+    background-color: rgba(0, 162, 255, 0.8);
+}
+
+.hero .servicos .elemento-servicos.relatorios::before{
+    background-color: rgba(161, 1, 1, 0.8);
+}
+
+.hero .servicos .elemento-servicos.turmas-e-alunos::before{
+    background-color: rgba(0, 0, 0, 0.8);
+}
 
 .hero .servicos .elemento-servicos.questoes::before,
 .hero .servicos .elemento-servicos.provas::before,
@@ -92,7 +116,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.4);
     border-radius: 15px;
     z-index: 1;
 }

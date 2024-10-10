@@ -1,0 +1,8 @@
+@media screen and (max-width: 1240px) {
+    
+
+    .hero .servicos .elemento-servicos {
+        flex: 2 2 calc(33.33% - 20px);
+    }
+
+}
