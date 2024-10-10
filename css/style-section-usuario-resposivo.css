@@ -17,8 +17,16 @@
     /*************************************************
     **************************************************/
 
-    .usuario .card-usuario .txt-usuario {
-        display: none;
+    .usuario .card-usuario .img-usuario img {
+        width: 50px;
+    }
+
+    .usuario .card-usuario .txt-usuario h3 {
+        font-size: 13px;
+    }
+
+    .usuario .card-usuario .txt-usuario p {
+        font-size: 9px;
     }
     
 }
