@@ -42,10 +42,16 @@
 
 .container-usuario .config-usuario button {
     display: flex;
+    padding: 10px;
     align-items: center;
 
+    color: #fff;
+
     background: transparent;
+    border-radius: 10px;
     border: 1px solid #fff;
+    
+    cursor: pointer;
 }
 
 .container-usuario .config-usuario button:hover {
@@ -63,4 +69,3 @@
     margin-right: 25px;
     font-size: 18px;
 }
-
