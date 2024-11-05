@@ -1,0 +1,23 @@
+.nav-menu {
+    background-color: #e7e7e7;
+    padding: 15px 0;
+}
+
+.nav-menu .menu .ul-menu {
+    display: flex;
+
+    justify-content: space-between;
+    list-style: none;
+}
+
+.nav-menu .menu .ul-menu .item-menu > a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+.nav-menu .menu .ul-menu .item-menu .sub-menu {
+    display: none;
+}
+
+
