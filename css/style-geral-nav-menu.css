@@ -1,13 +1,7 @@
-.nav-menu {
-    background-color: #e7e7e7;
-    padding: 15px 0;
-}
-
 .nav-menu .menu .ul-menu {
     display: flex;
-
-    justify-content: space-between;
     list-style: none;
+    width: 100%;
 }
 
 .nav-menu .menu .ul-menu .item-menu > a {
@@ -16,8 +10,79 @@
     font-weight: bold;
 }
 
-.nav-menu .menu .ul-menu .item-menu .sub-menu {
-    display: none;
+.nav-menu .menu .ul-menu .item-menu {
+    flex-grow: 1;
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
 }
 
+.nav-menu .menu .ul-menu .questoes {
+    background-color: #f8c578;
+    border-bottom: 5px solid #d47f00;
+}
 
+.nav-menu .menu .ul-menu .avaliacoes {
+    background-color: #77ff8e;
+    border-bottom: 5px solid #009919;
+}
+
+.nav-menu .menu .ul-menu .correcoes {
+    background-color: #cfb1ff;
+    border-bottom: 5px solid #4d00c9;
+}
+
+.nav-menu .menu .ul-menu .relatorios {
+    background-color: #ffa8a8;
+    border-bottom: 5px solid #a50000;
+}
+
+.nav-menu .menu .ul-menu .item-menu .sub-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    margin-top: 5px;
+    width: 100%;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+    padding: 10px 0;
+    padding-left: 15px;
+    text-align: start;
+    list-style: none;
+    list-style-position: inside;
+}
+
+.nav-menu .menu .ul-menu .item-menu:hover .sub-menu {
+    display: block;
+}
+
+.nav-menu .menu .ul-menu .item-menu .sub-menu li {
+    padding-top: 4px;
+}
+
+.nav-menu .menu .ul-menu .item-menu .sub-menu li a {
+    text-decoration: none;
+    color: #000;
+}
+
+.nav-menu .menu .ul-menu .item-menu .sub-menu.questoes li > a:hover {
+    color: #d47f00;
+    font-weight: 600;
+}
+
+.nav-menu .menu .ul-menu .item-menu .sub-menu.avaliacoes li > a:hover {
+    color: #009919;
+    font-weight: 600;
+}
+
+.nav-menu .menu .ul-menu .item-menu .sub-menu.correcoes li > a:hover {
+    color: #4d00c9;
+    font-weight: 600;
+}
+
+.nav-menu .menu .ul-menu .item-menu .sub-menu.relatorios li > a:hover {
+    color: #a50000;
+    font-weight: 600;
+}
