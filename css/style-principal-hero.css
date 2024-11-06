@@ -1,21 +1,12 @@
 .hero {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
 }
 
-.hero p {
-    margin: 20px 0;
-    max-width: 800px;
+.hero .interface .txt {
+    max-width: 600px;
     text-align: center;
-    font-style: italic;
+    font-style: italic;    
 }
-
-.hero .servicos {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
-

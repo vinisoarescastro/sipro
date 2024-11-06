@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="/css/style-section-header.css">
     <link rel="stylesheet" href="/css/style-section-usuario.css">
     <link rel="stylesheet" href="/css/style-section-usuario-resposivo.css">
-    <link rel="stylesheet" href="/css/style-principal-hero.css">
-    <link rel="stylesheet" href="/css/style-principal-hero-responsivo.css">
+    <link rel="stylesheet" href="/css/style-principal-hero-avaliacao-criar.css">
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -94,7 +93,7 @@
                     <li class="item-menu avaliacoes">
                         <a href="#">Avaliações</a>
                         <ul class="sub-menu avaliacoes">
-                            <li><a href="/html/principal-avaliacao-criar.html">Criar Avaliação</a></li>
+                            <li><a href="#">Criar Avaliação</a></li>
                             <li><a href="#">Consultar Avaliação</a></li>
                             <li><a href="#">Editar Avaliações</a></li>
                             <li><a href="#">Desempenho de Avaliações</a></li>
@@ -132,13 +131,51 @@
 
         <div class="interface">
 
-            <div class="txt">
-                <p>O <strong>Sistema de Provas</strong> é uma plataforma para criação, aplicação e correção automática de provas, permitindo que professores e coordenadores elaborem avaliações de diversos níveis de dificuldade. Inclui impressão de provas com QR code e gabarito para correção via câmera, além de recursos como gestão de turmas, aplicação online, simulados e relatórios detalhados, tornando o processo de avaliação mais eficiente e organizado.</p>
-            </div>
+            <a href="./principal.html">
+                <button><i class="bi bi-arrow-left-circle-fill"></i>Retornar</button>
+            </a>
+
+            <form action="/gerar-prova" method="POST">
+
+                <label for="titulo" class="input-label">Título da Prova:
+                    <input type="text" id="titulo" name="titulo" placeholder="Digite o título da prova">
+                </label>
+
+                <label for="contator-questoes">
+                    <p id="contador-questoes"></p>
+                </label>
+            
+                <label for="data">Data da Prova:
+                    <input type="date" name="data" id="data">
+                </label>
+            
+                <label for="descricao">Descrição da Prova:
+                    <textarea id="descricao" name="descricao" placeholder="Adicione uma descrição ou instruções"></textarea>
+                </label>
+            
+                <label for="turno">Turno:
+                    <select name="turno" id="turno">
+                        <option value="matutino">Matutino</option>
+                        <option value="vespertino">Vespertino</option>
+                        <option value="noturno">Noturno</option>
+                    </select>
+                </label>
+            
+                <div id="questoes-container"></div> <!-- Contêiner para adicionar as questões -->
+            
+                <button type="button" id="adicionar-questao">Adicionar Questão</button> <!-- Botão para adicionar questão -->
+            
+                <button type="submit">Gerar Prova</button>
+            </form>
+            
 
         </div>
 
     </section>
+
+    <div class="main-content">
+        <!-- para empurrar o footer pro final -->
+    </div>
 
     <footer class="footer">
 
@@ -161,6 +198,8 @@
         </div>
 
     </footer>
+
+    <script src="../js/adicionarQuestao.js"></script>
 
 </body>
 </html>

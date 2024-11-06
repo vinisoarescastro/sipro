@@ -15,6 +15,10 @@
     --degrade-verde: linear-gradient(to right, #00ac4e, #005e2a);
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
 
