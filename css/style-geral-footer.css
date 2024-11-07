@@ -17,6 +17,8 @@
 **************************************************/
 
 .footer {
+    position: sticky;
+    bottom: 0;
     background-color: var(--color-azul);
     padding: 21px 0px;
 }

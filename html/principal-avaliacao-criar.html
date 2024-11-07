@@ -23,181 +23,190 @@
 </head>
 <body>
 
-    <header class="header">
+        <header class="header">
         
-        <div class="interface">
-
-            <div class="txt-title">
-                <h3>Sistemas de Provas</h3>
-                <p>Gestão de provas e correção automatizada.</p>
+            <div class="interface">
+                <div class="txt-title">
+                    <h3>Sistemas de Provas</h3>
+                    <p>Gestão de provas e correção automatizada.</p>
+                </div>
             </div>
 
-        </div>
+        </header>
 
-    </header>
+        <section class="usuario">
 
-    <section class="usuario">
+            <div class="interface">
 
-        <div class="interface">
+                <div class="container-usuario">
 
-            <div class="container-usuario">
+                    <div class="card-usuario">
 
-                <div class="card-usuario">
+                        <div class="img-usuario">
+                            <img src="../img/icon-usuario/img-vini.jpeg" alt="img-usuario">
+                        </div>
 
-                    <div class="img-usuario">
-                        <img src="../img/icon-usuario/img-vini.jpeg" alt="img-usuario">
+                        <div class="txt-usuario">
+                            <h3>Vinícius Soares Castro</h3>
+                            <p>GEIT Gerência em Infraestrutura e Tecnologia</p>
+                            <p>Unidade Escolar: Centralizada - 54789642</p>
+                        </div>
+
                     </div>
 
-                    <div class="txt-usuario">
-                        <h3>Vinícius Soares Castro</h3>
-                        <p>GEIT Gerência em Infraestrutura e Tecnologia</p>
-                        <p>Unidade Escolar: Centralizada - 54789642</p>
+                    <div class="config-usuario">
+
+                        <i class="bi bi-gear-fill"></i>
+
+                        <button>
+                            <i class="bi bi-box-arrow-left exit"></i>
+                            <p>Sair</p>
+                        </button>
+
                     </div>
 
                 </div>
 
-                <div class="config-usuario">
-                    <i class="bi bi-gear-fill"></i>
+            </div>
 
-                    <button>
-                        <i class="bi bi-box-arrow-left exit"></i>
-                        <p>Sair</p>
-                    </button>
+        </section>
 
-                </div>
+        <section class="nav-menu">
+
+            <div class="interface">
+
+                <nav class="menu">
+
+                    <ul class="ul-menu">
+
+                        <li class="item-menu questoes">
+
+                            <a href="#">Questões</a>
+                            <ul class="sub-menu questoes">
+                                <li><a href="#">Cadastrar</a></li>
+                                <li><a href="#">Consultar</a></li>
+                                <li><a href="#">Editar</a></li>
+                                <li><a href="#">Excluir</a></li>
+                                <li><a href="#">Importar</a></li>
+                            </ul>
+
+                        </li>
+
+                        <li class="item-menu avaliacoes">
+
+                            <a href="#">Avaliações</a>
+                            <ul class="sub-menu avaliacoes">
+                                <li><a href="#">Criar Avaliação</a></li>
+                                <li><a href="#">Consultar Avaliação</a></li>
+                                <li><a href="#">Editar Avaliações</a></li>
+                                <li><a href="#">Desempenho de Avaliações</a></li>
+                            </ul>
+
+                        </li>
+
+                        <li class="item-menu correcoes">
+
+                            <a href="#">Correções</a>
+                            <ul class="sub-menu correcoes">
+                                <li><a href="#">Correção Manual</a></li>
+                                <li><a href="#">Correção Automática</a></li>
+                                <li><a href="#">Ajustar Notas</a></li>
+                                <li><a href="#">Revisão de Respostas</a></li>
+                                <li><a href="#">Histórico de Correções</a></li>
+                            </ul>
+
+                        </li>
+
+                        <li class="item-menu relatorios">
+
+                            <a href="#">Relatórios</a>
+                            <ul class="sub-menu relatorios">
+                                <li><a href="#">Relatório de Desempenho</a></li>
+                                <li><a href="#">Relatório de Questões</a></li>
+                                <li><a href="#">Desempenho Individual</a></li>
+                                <li><a href="#">Gráficos e Visualizações</a></li>
+                                <li><a href="#">Relatório de Participação</a></li>
+                            </ul>
+
+                        </li>
+
+                    </ul>
+
+                </nav>
 
             </div>
 
-        </div>
+        </section>
 
-    </section>
+        <section class="hero">
 
-    <section class="nav-menu">
-        <div class="interface">
+            <div class="interface">
 
-            <nav class="menu">
+                <a href="./principal.html">
+                    <button><i class="bi bi-arrow-left-circle-fill"></i>Retornar</button>
+                </a>
 
-                <ul class="ul-menu">
+                <form action="/gerar-prova" method="POST">
 
-                    <li class="item-menu questoes">
-                        <a href="#">Questões</a>
-                        <ul class="sub-menu questoes">
-                            <li><a href="#">Cadastrar</a></li>
-                            <li><a href="#">Consultar</a></li>
-                            <li><a href="#">Editar</a></li>
-                            <li><a href="#">Excluir</a></li>
-                            <li><a href="#">Importar</a></li>
-                        </ul>
-                    </li>
+                    <label for="titulo" class="input-label">Título da Prova:
+                        <input type="text" id="titulo" name="titulo" placeholder="Digite o título da prova">
+                    </label>
 
-                    <li class="item-menu avaliacoes">
-                        <a href="#">Avaliações</a>
-                        <ul class="sub-menu avaliacoes">
-                            <li><a href="#">Criar Avaliação</a></li>
-                            <li><a href="#">Consultar Avaliação</a></li>
-                            <li><a href="#">Editar Avaliações</a></li>
-                            <li><a href="#">Desempenho de Avaliações</a></li>
-                        </ul>
-                    </li>
+                    <label for="contator-questoes">
+                        <p id="contador-questoes"></p>
+                    </label>
+        
+                    <label for="data">Data da Prova:
+                        <input type="date" name="data" id="data">
+                    </label>
+        
+                    <label for="descricao">Descrição da Prova:
+                        <textarea id="descricao" name="descricao" placeholder="Adicione uma descrição ou instruções"></textarea>
+                    </label>
+        
+                    <label for="turno">Turno:
 
-                    <li class="item-menu correcoes">
-                        <a href="#">Correções</a>
-                        <ul class="sub-menu correcoes">
-                            <li><a href="#">Correção Manual</a></li>
-                            <li><a href="#">Correção Automática</a></li>
-                            <li><a href="#">Ajustar Notas</a></li>
-                            <li><a href="#">Revisão de Respostas</a></li>
-                            <li><a href="#">Histórico de Correções</a></li>
-                        </ul>
-                    </li>
+                        <select name="turno" id="turno">
+                            <option value="matutino">Matutino</option>
+                            <option value="vespertino">Vespertino</option>
+                            <option value="noturno">Noturno</option>
+                        </select>
 
-                    <li class="item-menu relatorios">
-                        <a href="#">Relatórios</a>
-                        <ul class="sub-menu relatorios">
-                            <li><a href="#">Relatório de Desempenho</a></li>
-                            <li><a href="#">Relatório de Questões</a></li>
-                            <li><a href="#">Desempenho Individual</a></li>
-                            <li><a href="#">Gráficos e Visualizações</a></li>
-                            <li><a href="#">Relatório de Participação</a></li>
-                        </ul>
-                    </li>
+                    </label>
+        
+                    <div id="questoes-container"></div> <!-- Contêiner para adicionar as questões -->
+        
+                    <button type="button" id="adicionar-questao">Adicionar Questão</button> <!-- Botão para adicionar questão -->
+        
+                    <button type="submit">Gerar Prova</button>
 
-                </ul>
-            </nav>
-        </div>
-    </section>
-
-    <section class="hero">
-
-        <div class="interface">
-
-            <a href="./principal.html">
-                <button><i class="bi bi-arrow-left-circle-fill"></i>Retornar</button>
-            </a>
-
-            <form action="/gerar-prova" method="POST">
-
-                <label for="titulo" class="input-label">Título da Prova:
-                    <input type="text" id="titulo" name="titulo" placeholder="Digite o título da prova">
-                </label>
-
-                <label for="contator-questoes">
-                    <p id="contador-questoes"></p>
-                </label>
-            
-                <label for="data">Data da Prova:
-                    <input type="date" name="data" id="data">
-                </label>
-            
-                <label for="descricao">Descrição da Prova:
-                    <textarea id="descricao" name="descricao" placeholder="Adicione uma descrição ou instruções"></textarea>
-                </label>
-            
-                <label for="turno">Turno:
-                    <select name="turno" id="turno">
-                        <option value="matutino">Matutino</option>
-                        <option value="vespertino">Vespertino</option>
-                        <option value="noturno">Noturno</option>
-                    </select>
-                </label>
-            
-                <div id="questoes-container"></div> <!-- Contêiner para adicionar as questões -->
-            
-                <button type="button" id="adicionar-questao">Adicionar Questão</button> <!-- Botão para adicionar questão -->
-            
-                <button type="submit">Gerar Prova</button>
-            </form>
-            
-
-        </div>
-
-    </section>
-
-    <div class="main-content">
-        <!-- para empurrar o footer pro final -->
-    </div>
-
-    <footer class="footer">
-
-        <div class="interface">
-
-            <div class="logo-governo-goias">
-                <img src="../img/logos/logo-governo-goias.png" alt="Governo de Goiás">
+                </form>
+        
             </div>
 
-            <section class="apps">
+        </section>
 
-                <p>Governo na palma da mão</p>
-                <div class="img-baixe-apps">
-                    <img src="../img/loja-apps/google-play-v2.png" alt="Google Play" class="img1">
-                    <img src="../img/loja-apps/app-store-v2.png" alt="Apple Store" class="img2">
+        <footer class="footer">
+
+            <div class="interface">
+
+                <div class="logo-governo-goias">
+                    <img src="../img/logos/logo-governo-goias.png" alt="Governo de Goiás">
                 </div>
 
-            </section>
+                <section class="apps">
 
-        </div>
+                    <p>Governo na palma da mão</p>
+                    <div class="img-baixe-apps">
+                        <img src="../img/loja-apps/google-play-v2.png" alt="Google Play" class="img1">
+                        <img src="../img/loja-apps/app-store-v2.png" alt="Apple Store" class="img2">
+                    </div>
 
-    </footer>
+                </section>
+
+            </div>
+            
+        </footer>
 
     <script src="../js/adicionarQuestao.js"></script>
 
