@@ -1,0 +1,21 @@
+a button {
+    padding: 10px 20px;
+    background: var(--color-azul-claro);
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px #0000002d;
+    margin: 15px 0;
+    border: 1px solid var(--color-azul-escuro);
+    color: var(--color-azul-escuro);
+    font-size: 15px;
+}
+
+a button:hover {
+    background: var(--color-azul-escuro);
+    color: #fff;
+}
+
+a button i {
+    margin-right: 10px;
+    font-size: 15px;
+}
+

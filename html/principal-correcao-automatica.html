@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/css/style-section-header.css">
     <link rel="stylesheet" href="/css/style-section-usuario.css">
     <link rel="stylesheet" href="/css/style-section-usuario-resposivo.css">
-    <link rel="stylesheet" href="/css/style-principal-hero-avaliacao-criar.css">
+    <link rel="stylesheet" href="/css/style-principal-correcao-automatica.css">
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -96,7 +96,7 @@
 
                             <a href="#">Avaliações</a>
                             <ul class="sub-menu avaliacoes">
-                                <li><a href="#">Criar Avaliação</a></li>
+                                <li><a href="/html/principal-avaliacao-criar.html">Criar Avaliação</a></li>
                                 <li><a href="#">Consultar Avaliação</a></li>
                                 <li><a href="#">Editar Avaliações</a></li>
                                 <li><a href="#">Desempenho de Avaliações</a></li>
@@ -109,7 +109,7 @@
                             <a href="#">Correções</a>
                             <ul class="sub-menu correcoes">
                                 <li><a href="#">Correção Manual</a></li>
-                                <li><a href="/html/principal-correcao-automatica.html">Correção Automática</a></li>
+                                <li><a href="#">Correção Automática</a></li>
                                 <li><a href="#">Ajustar Notas</a></li>
                                 <li><a href="#">Revisão de Respostas</a></li>
                                 <li><a href="#">Histórico de Correções</a></li>
@@ -146,40 +146,19 @@
                     <button><i class="bi bi-arrow-left-circle-fill"></i>Retornar</button>
                 </a>
 
-                <form action="/gerar-prova" method="POST" class="styled-form">
+                <div class="correcoes-auto">
 
-                    <label for="titulo" class="input-label">Título da Prova:
-                        <input type="text" id="titulo" name="titulo" placeholder="Digite o título da prova">
-                    </label>
-                
-                    <label for="contador-questoes">
-                        <p id="contador-questoes">Nº de Questões: 0</p>
-                    </label>
-                
-                    <label for="data">Data da Prova:
-                        <input type="date" name="data" id="data">
-                    </label>
-                
-                    <label for="descricao">Descrição da Prova:
-                        <textarea id="descricao" name="descricao" placeholder="Adicione uma descrição ou instruções"></textarea>
-                    </label>
-                
-                    <label for="turno">Turno:
-                        <select name="turno" id="turno">
-                            <option value="matutino">Matutino</option>
-                            <option value="vespertino">Vespertino</option>
-                            <option value="noturno">Noturno</option>
-                        </select>
-                    </label>
-                
-                    <div id="questoes-container"></div>
-                
-                    <div class="btn-container">
-                        <button type="button" id="adicionar-questao" class="btn-add">Adicionar Questão</button>
-                        <button type="submit" id="gerar-prova" class="btn-submit">Gerar Prova</button>
-                    </div>
-                
-                </form>                
+                    <div class="correcoes-auto">
+                        <div class="camera">
+                            <video autoplay playsinline></video>
+                        </div>
+                        <button onclick="enviarImagem()">Processar Gabarito</button>
+                        <div class="resultado">
+                            <p id="resultado"></p>
+                        </div>
+                    </div> 
+
+                </div>           
         
             </div>
 
@@ -209,6 +188,8 @@
 
     <script src="../js/adicionarQuestao.js"></script>
     <script src="../js/dadosProvas.js"></script>
+    <script src="../js/ativarCamera.js"></script>
+    
 
 </body>
 </html>
