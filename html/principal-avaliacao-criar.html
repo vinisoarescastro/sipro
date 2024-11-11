@@ -146,41 +146,40 @@
                     <button><i class="bi bi-arrow-left-circle-fill"></i>Retornar</button>
                 </a>
 
-                <form action="/gerar-prova" method="POST">
+                <form action="/gerar-prova" method="POST" class="styled-form">
 
                     <label for="titulo" class="input-label">Título da Prova:
                         <input type="text" id="titulo" name="titulo" placeholder="Digite o título da prova">
                     </label>
-
-                    <label for="contator-questoes">
-                        <p id="contador-questoes"></p>
+                
+                    <label for="contador-questoes">
+                        <p id="contador-questoes">Nº de Questões: 0</p>
                     </label>
-        
+                
                     <label for="data">Data da Prova:
                         <input type="date" name="data" id="data">
                     </label>
-        
+                
                     <label for="descricao">Descrição da Prova:
                         <textarea id="descricao" name="descricao" placeholder="Adicione uma descrição ou instruções"></textarea>
                     </label>
-        
+                
                     <label for="turno">Turno:
-
                         <select name="turno" id="turno">
                             <option value="matutino">Matutino</option>
                             <option value="vespertino">Vespertino</option>
                             <option value="noturno">Noturno</option>
                         </select>
-
                     </label>
-        
-                    <div id="questoes-container"></div> <!-- Contêiner para adicionar as questões -->
-        
-                    <button type="button" id="adicionar-questao">Adicionar Questão</button> <!-- Botão para adicionar questão -->
-        
-                    <button type="submit">Gerar Prova</button>
-
-                </form>
+                
+                    <div id="questoes-container"></div>
+                
+                    <div class="btn-container">
+                        <button type="button" id="adicionar-questao" class="btn-add">Adicionar Questão</button>
+                        <button type="submit" id="gerar-prova" class="btn-submit">Gerar Prova</button>
+                    </div>
+                
+                </form>                
         
             </div>
 
@@ -209,6 +208,7 @@
         </footer>
 
     <script src="../js/adicionarQuestao.js"></script>
+    <script src="../js/dadosProvas.js"></script>
 
 </body>
 </html>
