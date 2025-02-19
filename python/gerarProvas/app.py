@@ -38,8 +38,8 @@ def criar_pdf(dados):
     INSTRUÇÕES IMPORTANTES:
 
     1. Proibido consultar qualquer material durante a prova, incluindo livros, anotações, celulares e dispositivos eletrônicos. A consulta externa resultará em anulação da prova.
-    2. Tempo de duração: Você tem **50 minutos** para concluir esta prova.
-    3. Comportamento**: Conversas ou trocas de informações são estritamente proibidas.
+    2. Tempo de duração: Você tem 50 minutos para concluir esta prova.
+    3. Comportamento: Conversas ou trocas de informações são estritamente proibidas.
     4. Identificação: Apresente sua identificação corretamente ao entregar a prova.
     5. Questões: A prova é composta exclusivamente por questões de múltipla escolha, com alternativas de a) até e).
     6. Revisão: Verifique suas respostas antes de entregar a prova.
