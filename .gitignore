@@ -1,0 +1,14 @@
+node_modules/
+sipro-app/node_modules/
+
+dist/
+sipro-app/dist/
+
+__pycache__/
+*.py[cod]
+
+.claude/
+.idea/
+
+.env
+.env.*

@@ -1,7 +1,7 @@
-# SIPRO Sistema de Provas com QR Code
+# SIPRO — Sistema de Provas
 ### Secretaria de Educação do Estado de Goiás (SEDUC-GO)
 
-> Plataforma para criação, aplicação e correção automatizada de provas, com suporte a QR Code e leitura de gabarito via câmera.
+> Plataforma web para criação, aplicação e correção automatizada de provas educacionais, com geração de PDF e leitura de gabarito via câmera.
 
 ---
 
@@ -12,11 +12,9 @@
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Arquitetura do Sistema](#arquitetura-do-sistema)
-- [Instalação e Configuração](#instalação-e-configuração)
+- [Como Rodar](#como-rodar)
 - [Endpoints da API](#endpoints-da-api)
 - [Fluxo de Uso](#fluxo-de-uso)
-- [Módulos Python](#módulos-python)
-- [Frontend (HTML/CSS/JS)](#frontend-htmlcssjs)
 - [Observações de Segurança](#observações-de-segurança)
 - [Melhorias Futuras](#melhorias-futuras)
 
@@ -24,39 +22,36 @@
 
 ## Visão Geral
 
-O **SIPRO** é um sistema web voltado para a gestão de avaliações educacionais da SEDUC-GO. Ele permite que professores e coordenadores criem provas, imprimam gabaritos com QR Code e realizem a correção automática das respostas via câmera, usando visão computacional.
+O **SIPRO** é um sistema web voltado para a gestão de avaliações educacionais da SEDUC-GO. Professores e coordenadores podem cadastrar questões, compor provas, gerar PDFs institucionais e realizar a correção automática de gabaritos via câmera com visão computacional.
 
 O sistema é composto por:
-- **Frontend Web** (HTML, CSS, JavaScript)
-- **Backend Python** com dois servidores Flask independentes
-- **Módulo de Visão Computacional** com OpenCV
-- **Gerador de QR Codes** para identificação de alunos
+- **Frontend SPA** em React 18 + TypeScript (Vite), localizado em `sipro-app/`
+- **API de Questões e Avaliações** em Python/Flask (porta 5001)
+- **API de Correção Automática** em Python/Flask + OpenCV (porta 5000)
 
 ---
 
 ## Funcionalidades
 
 ### Implementadas
-- [x] Tela de login com autenticação (CPF ou e-mail + senha)
-- [x] Dashboard principal com menu de navegação categorizado
-- [x] Criação de avaliações com título, data, turno, descrição e questões
-- [x] Suporte a questões de múltipla escolha (5 alternativas) e verdadeiro/falso
-- [x] Adição e remoção dinâmica de questões via JavaScript
-- [x] Geração de provas em PDF com cabeçalho institucional (logo SEDUC), instruções, questões e rodapé com numeração de páginas
-- [x] Correção automática de gabarito via câmera (webcam desktop com OpenCV)
-- [x] Correção automática via câmera no navegador (captura e envio da imagem ao servidor Flask)
-- [x] Geração de QR Codes com nome e matrícula do aluno
-- [x] Layout responsivo para dispositivos móveis
+- [x] Tela de login com autenticação
+- [x] Dashboard com cards de acesso rápido e resumo do sistema
+- [x] Cadastro de questões (múltipla escolha e verdadeiro/falso) com banco de questões
+- [x] Filtro e exclusão de questões no banco
+- [x] Criação de avaliações com título, data, turno, instruções e questões dinâmicas
+- [x] Geração de prova em PDF com cabeçalho institucional (logo SEDUC-GO)
+- [x] Correção automática de gabarito via câmera (webcam + OpenCV)
+- [x] Navegação SPA (sem recarregamento de página)
+- [x] Design responsivo (desktop, tablet e mobile)
+- [x] Script `start.bat` para iniciar todo o sistema com um clique
 
-### Planejadas (menu disponível, funcionalidade pendente)
-- [ ] Cadastro, consulta, edição, exclusão e importação de questões
+### Em Desenvolvimento
+- [ ] Consulta, edição e importação de questões
 - [ ] Consulta, edição e análise de desempenho de avaliações
 - [ ] Correção manual e ajuste de notas
 - [ ] Revisão de respostas e histórico de correções
 - [ ] Relatórios de desempenho individual e geral
 - [ ] Gráficos e visualizações de dados
-- [ ] Gestão de turmas e alunos
-- [ ] Aplicação de provas online
 
 ---
 
@@ -65,18 +60,18 @@ O sistema é composto por:
 ### Frontend
 | Tecnologia | Uso |
 |---|---|
-| HTML5 | Estrutura das páginas |
-| CSS3 | Estilização modular por componente |
-| JavaScript (Vanilla) | Interatividade, validação e chamadas à API |
-| Bootstrap Icons 1.10.5 | Ícones da interface (via CDN) |
+| React 18 + TypeScript | SPA com componentes reutilizáveis e tipagem estática |
+| Vite 5 | Build tool e servidor de desenvolvimento |
+| CSS Variables | Design system global (cores, tokens, responsividade) |
+| Bootstrap Icons | Ícones da interface (via CDN) |
 
 ### Backend
 | Tecnologia | Uso |
 |---|---|
-| Python 3.x | Linguagem principal do backend |
+| Python 3.8+ | Linguagem principal do backend |
 | Flask | Servidor web e API REST |
-| Flask-CORS | Liberação de requisições cross-origin |
-| fpdf | Geração de arquivos PDF |
+| Flask-CORS | Liberação de requisições cross-origin do frontend |
+| FPDF | Geração de arquivos PDF das provas |
 
 ### Visão Computacional
 | Tecnologia | Uso |
@@ -86,65 +81,60 @@ O sistema é composto por:
 | Pillow (PIL) | Conversão de imagem Base64 para array |
 | pickle | Serialização dos campos e respostas do gabarito |
 
-### QR Code
-| Tecnologia | Uso |
-|---|---|
-| qrcode | Geração de QR Codes para identificação de alunos |
-
 ---
 
 ## Estrutura do Projeto
 
 ```
-sipro/
+SiPro-Sistema-de-Provas/
 │
-├── html/
-│   ├── index-login.html                  # Página de login
-│   ├── principal.html                    # Dashboard principal
-│   ├── principal-avaliacao-criar.html    # Criação de avaliações
-│   └── principal-correcao-automatica.html# Correção automática via câmera
-│
-├── css/
-│   ├── global.css                        # Reset, variáveis CSS e body global
-│   ├── style-login.css                   # Estilos da página de login
-│   ├── style-geral-interface.css         # Container .interface (max-width 1280px)
-│   ├── style-geral-footer.css            # Estilos do rodapé
-│   ├── style-geral-footer-resposivo.css  # Responsividade do rodapé
-│   ├── style-geral-nav-menu.css          # Menu de navegação com submenus
-│   ├── style-section-header.css          # Cabeçalho azul institucional
-│   ├── style-section-usuario.css         # Barra de usuário logado
-│   ├── style-section-usuario-resposivo.css# Responsividade da barra de usuário
-│   ├── style-principal-hero.css          # Seção hero da página principal
-│   ├── style-principal-hero-responsivo.css# Responsividade do hero
-│   ├── style-section-hero-questoes.css   # Seção de questões com cards
-│   ├── style-principal-hero-avaliacao-criar.css # Formulário de criação
-│   └── style-principal-correcao-automatica.css  # Tela de correção automática
-│
-├── js/
-│   ├── validacaoLogin.js     # Validação e submissão do formulário de login
-│   ├── adicionarQuestao.js   # Adição/remoção dinâmica de questões no formulário
-│   ├── dadosProvas.js        # Coleta dados do formulário e envia ao Flask (PDF)
-│   └── ativarCamera.js       # Acessa webcam, captura frame e envia ao Flask
+├── sipro-app/                    ← Frontend React + TypeScript (SPA)
+│   ├── src/
+│   │   ├── App.tsx               ← Roteamento e controle de autenticação
+│   │   ├── index.css             ← Design system global
+│   │   ├── types/index.ts        ← Tipos TypeScript do domínio
+│   │   ├── services/api.ts       ← Chamadas às APIs (fetch tipado)
+│   │   ├── components/
+│   │   │   ├── layout/           ← Sidebar, Header, Layout
+│   │   │   └── ui/               ← EmDesenvolvimento, badges, etc.
+│   │   └── pages/
+│   │       ├── Login.tsx
+│   │       ├── Home.tsx
+│   │       ├── questoes/         ← QuestoesCadastrar.tsx
+│   │       ├── avaliacoes/       ← AvaliacoesCriar.tsx
+│   │       └── correcoes/        ← CorrecaoAutomatica.tsx
+│   ├── public/
+│   │   └── img/logos/            ← Logos SEDUC-GO e Governo de Goiás
+│   ├── package.json
+│   ├── vite.config.ts
+│   └── tsconfig.json
 │
 ├── python/
-│   ├── extrairGabarito.py       # Módulo de extração do maior contorno (gabarito)
-│   ├── mainWebcan.py            # Correção via webcam desktop (loop contínuo)
-│   ├── mainWebcan-stop.py       # Correção via webcam com condição de parada
-│   ├── mainWebcan-web.py        # Servidor Flask para correção via navegador
-│   ├── campos.pkl               # (gerado) Coordenadas dos campos do gabarito
-│   ├── resp.pkl                 # (gerado) Mapeamento de campos para respostas
-│   └── gerarProvas/
-│       └── app.py               # Servidor Flask para geração de PDFs de prova
+│   ├── questoes/
+│   │   ├── app.py                ← API REST: questões, avaliações e PDF (porta 5001)
+│   │   └── questoes.json         ← Persistência de questões (gerado automaticamente)
+│   ├── mainWebcan-web.py         ← API REST: correção automática via câmera (porta 5000)
+│   ├── extrairGabarito.py        ← Módulo de visão computacional (OpenCV)
+│   ├── campos.pkl                ← Coordenadas dos campos do gabarito
+│   └── resp.pkl                  ← Mapeamento de campos para respostas
 │
 ├── qr_codes/
-│   └── gerar-qr-codes.py        # Gera QR Codes com nome e matrícula do aluno
+│   └── gerar-qr-codes.py         ← Gerador de QR Codes para identificação de alunos
 │
 ├── img/
-│   ├── logos/                   # Logos SEDUC e Governo de Goiás
-│   ├── backgrounds/             # Imagem de fundo (fachada SEDUC)
-│   ├── icon-usuario/            # Foto e ícone do usuário
-│   └── loja-apps/               # Badges Google Play e App Store
+│   ├── logos/                    ← Logos SEDUC-GO e Governo de Goiás
+│   └── backgrounds/              ← Imagem de fundo da tela de login
 │
+├── docs/
+│   ├── arquitetura.md            ← Descrição e justificativa da arquitetura em camadas
+│   ├── c4-context.puml           ← Diagrama C4 Nível 1 (Contexto)
+│   ├── c4-container.puml         ← Diagrama C4 Nível 2 (Containers)
+│   ├── c4-component.puml         ← Diagrama C4 Nível 3 (Componentes)
+│   ├── c4-documentacao.md        ← Documentação dos diagramas C4
+│   ├── historia-de-usuario.md    ← HU-01: Cadastrar Questão
+│   └── como-rodar.md             ← Guia de instalação e execução
+│
+├── start.bat                     ← Inicializa todo o sistema com um clique
 └── README.md
 ```
 
@@ -152,135 +142,106 @@ sipro/
 
 ## Arquitetura do Sistema
 
+O SIPRO adota **Arquitetura em Camadas (N-Tier)**:
+
 ```
-┌────────────────────────────────────────────────────────┐
-│                     NAVEGADOR (Cliente)                │
-│                                                        │
-│  index-login.html ──► principal.html                   │
-│       │                    │                           │
-│       │            ┌───────┴────────┐                  │
-│       │     avaliacao-criar.html    correcao-auto.html  │
-│       │            │                      │            │
-│  validacaoLogin.js  dadosProvas.js   ativarCamera.js   │
-└───────┼────────────┼──────────────────────┼────────────┘
-        │            │ POST /gerar-prova     │ POST /processar
-        │     ┌──────▼──────┐        ┌──────▼──────┐
-        │     │  Flask API  │        │  Flask API  │
-        │     │ gerarProvas │        │mainWebcan-  │
-        │     │   /app.py   │        │  web.py     │
-        │     │  porta 5000 │        │  porta 5000 │
-        │     └──────┬──────┘        └──────┬──────┘
-        │            │ FPDF                 │ OpenCV
-        │            ▼                      ▼
-        │       Prova em PDF         Leitura do Gabarito
-        │       (download)           + Cálculo da Nota
-        ▼
-   Login local (credencial hardcoded — ver Segurança)
+┌──────────────────────────────────────────┐
+│          Camada de Apresentação          │
+│      React 18 + TypeScript (SPA)        │
+│       http://localhost:3000             │
+└─────────────────┬────────────────────────┘
+                  │ HTTP/REST (JSON)
+       ┌──────────┴──────────┐
+       ▼                     ▼
+┌─────────────┐       ┌─────────────┐
+│  API Quest. │       │  API Corr.  │
+│  Flask 5001 │       │  Flask 5000 │
+│  questoes/  │       │  mainWebcan │
+│  app.py     │       │  -web.py    │
+└──────┬──────┘       └──────┬──────┘
+       │ FPDF / JSON          │ OpenCV
+       ▼                     ▼
+┌─────────────┐       ┌─────────────┐
+│ questoes    │       │  Leitura    │
+│ .json       │       │  de Gabar.  │
+└─────────────┘       └─────────────┘
 ```
+
+Detalhes completos em [`docs/arquitetura.md`](./docs/arquitetura.md) e [`docs/c4-documentacao.md`](./docs/c4-documentacao.md).
 
 ---
 
-## Instalação e Configuração
+## Como Rodar
 
 ### Pré-requisitos
 
-- Python 3.8+
-- pip
-- Navegador moderno com suporte a `getUserMedia` (para câmera)
+| Ferramenta | Versão mínima |
+|---|---|
+| Python | 3.8+ |
+| Node.js | 18+ |
+| npm | 9+ |
 
-### 1. Clone o repositório
-
-```bash
-git clone https://github.com/vinisoarescastro/sipro.git
-cd sipro
-```
-
-### 2. Instale as dependências Python
+### Instalar dependências (apenas na primeira vez)
 
 ```bash
 pip install flask flask-cors fpdf opencv-python numpy pillow qrcode
+cd sipro-app && npm install
 ```
 
-### 3. Inicie o servidor de geração de provas
+### Iniciar tudo com um clique
 
-```bash
-cd python/gerarProvas
-python app.py
-# Servidor disponível em: http://127.0.0.1:5000
+Na raiz do projeto, dê duplo clique em **`start.bat`** ou execute no terminal:
+
+```bat
+start.bat
 ```
 
-### 4. Inicie o servidor de correção automática (em outro terminal)
-
-```bash
-cd python
-python mainWebcan-web.py
-# Servidor disponível em: http://127.0.0.1:5000
-```
-
-> **Atenção:** Os dois servidores utilizam a mesma porta (5000). Para rodar ambos simultaneamente, configure portas diferentes (ex.: 5000 e 5001) e atualize as URLs nos arquivos JS correspondentes.
-
-### 5. Abra o frontend
-
-Sirva os arquivos HTML com qualquer servidor estático. Exemplo com Python:
-
-```bash
-# Na raiz do projeto
-python -m http.server 8080
-# Acesse: http://localhost:8080/html/index-login.html
-```
-
-### 6. Credenciais de acesso (desenvolvimento)
+Acesse **http://localhost:3000**
 
 ```
-CPF/E-mail: 12345678900
-Senha:      12345678
+Login: CPF 12345678900 / Senha 12345678
 ```
+
+Guia completo em [`docs/como-rodar.md`](./docs/como-rodar.md).
 
 ---
 
 ## Endpoints da API
 
-### Servidor de Geração de Provas (`gerarProvas/app.py`)
+### API de Questões e Avaliações — porta 5001
 
-#### `POST /gerar-prova`
+| Método | Rota | Descrição |
+|---|---|---|
+| `GET` | `/questoes` | Lista questões (filtros: `?disciplina=` `?tipo=`) |
+| `POST` | `/questoes` | Cadastra nova questão |
+| `GET` | `/questoes/<id>` | Busca questão por ID |
+| `PUT` | `/questoes/<id>` | Edita questão |
+| `DELETE` | `/questoes/<id>` | Exclui questão |
+| `POST` | `/gerar-prova` | Gera PDF da avaliação e retorna como download |
 
-Gera e retorna um PDF da prova com os dados fornecidos.
-
-**Body (JSON):**
+**Exemplo — POST /questoes:**
 ```json
 {
-  "titulo": "Avaliação de Matemática",
-  "descricao": "Avaliação do 1º bimestre",
-  "data": "2025-03-20",
-  "turno": "matutino",
-  "questoes": [
-    {
-      "titulo": "Quanto é 2 + 2?",
-      "tipo": "multipla-escolha",
-      "alternativas": ["2", "3", "4", "5", "6"]
-    }
-  ]
+  "enunciado": "Qual é a capital do Brasil?",
+  "tipo": "multipla_escolha",
+  "disciplina": "Geografia",
+  "nivel": "facil",
+  "alternativas": [
+    { "texto": "São Paulo" },
+    { "texto": "Brasília" },
+    { "texto": "Goiânia" }
+  ],
+  "gabarito": 1
 }
 ```
 
-**Resposta:** Arquivo PDF para download (`prova_gerada.pdf`)
+### API de Correção Automática — porta 5000
 
----
+| Método | Rota | Descrição |
+|---|---|---|
+| `POST` | `/processar` | Recebe imagem Base64 do gabarito e retorna pontuação |
 
-### Servidor de Correção Automática (`mainWebcan-web.py`)
-
-#### `POST /processar`
-
-Recebe uma imagem do gabarito em Base64 e retorna o resultado da correção.
-
-**Body (JSON):**
-```json
-{
-  "imagem": "data:image/png;base64,iVBORw0KGgo..."
-}
-```
-
-**Resposta (JSON):**
+**Resposta — POST /processar:**
 ```json
 {
   "respostas_lidas": ["1-C", "2-B", "3-D", "4-A", "5-C"],
@@ -290,153 +251,72 @@ Recebe uma imagem do gabarito em Base64 e retorna o resultado da correção.
 }
 ```
 
-> A pontuação é calculada como `acertos × 6`, totalizando no máximo **30 pontos** para 5 questões.
-
 ---
 
 ## Fluxo de Uso
 
-### Criação e Aplicação de Prova
+### Criar e gerar uma prova
 
 ```
-1. Professor faz login (index-login.html)
-2. Acessa "Avaliações > Criar Avaliação"
-3. Preenche título, data, turno, descrição
-4. Adiciona questões (múltipla escolha ou verdadeiro/falso)
-5. Clica em "Gerar Prova" → PDF é gerado e baixado automaticamente
-6. Professor imprime a prova e distribui aos alunos
+1. Acesse http://localhost:3000 e faça login
+2. Navegue em Questões → Cadastrar e cadastre questões no banco
+3. Navegue em Avaliações → Criar Avaliação
+4. Preencha título, data, turno e adicione questões
+5. Clique em "Gerar Prova em PDF" → download automático
+6. Imprima e distribua aos alunos
 ```
 
-### Correção Automática
+### Corrigir um gabarito
 
 ```
-1. Professor acessa "Correções > Correção Automática"
-2. Câmera do dispositivo é ativada automaticamente
-3. Professor posiciona o gabarito preenchido na frente da câmera
-4. Clica em "Processar Gabarito"
-5. O frame é capturado e enviado ao servidor Flask
-6. OpenCV extrai o gabarito, analisa campos preenchidos
-7. Resultado (acertos, erros, pontuação) é exibido na tela
+1. Navegue em Correções → Correção Automática
+2. A câmera é ativada automaticamente
+3. Posicione o gabarito preenchido na frente da câmera
+4. Clique em "Processar Gabarito"
+5. O resultado (acertos, erros, pontuação) é exibido na tela
 ```
-
-### Geração de QR Codes para Alunos
-
-```bash
-# Edite o nome e matrícula no arquivo e execute:
-python qr_codes/gerar-qr-codes.py
-# QR Code salvo em: qr_codes/qrcode0001.png
-```
-
----
-
-## Módulos Python
-
-### `extrairGabarito.py`
-
-Módulo central de visão computacional. A função `extrairMaiorCtn(img)`:
-
-1. Converte a imagem para escala de cinza
-2. Aplica **threshold adaptativo gaussiano** para binarização
-3. Dilata a imagem para preencher lacunas nos contornos
-4. Detecta todos os contornos externos
-5. Identifica o **maior contorno** (presumivelmente o gabarito)
-6. Recorta e redimensiona para `400×500 px`
-7. Retorna o recorte e as coordenadas do bounding box
-
-### `mainWebcan-web.py`
-
-Servidor Flask que:
-- Recebe imagem em Base64 via `POST /processar`
-- Carrega campos (`campos.pkl`) e respostas (`resp.pkl`) serializados
-- Chama `extrairGabarito.extrairMaiorCtn()`
-- Analisa cada campo: se ≥ 15% dos pixels estiverem preenchidos, considera marcado
-- Compara com gabarito oficial e retorna resultado em JSON
-
-### `gerarProvas/app.py`
-
-Servidor Flask que:
-- Recebe dados da prova em JSON via `POST /gerar-prova`
-- Usa a classe `PDF` (herda de `FPDF`) com cabeçalho e rodapé customizados
-- Gera PDF com instruções, título, data, turno, descrição e questões
-- Salva em arquivo temporário, envia como download e remove o arquivo
-
----
-
-## Frontend (HTML/CSS/JS)
-
-### Paleta de Cores (variáveis CSS globais)
-
-```css
---color-write:       #ffffff  /* Branco */
---color-black:       #000000  /* Preto */
---color-verde:       #00AC4E  /* Verde SEDUC */
---color-azul:        #007BFF  /* Azul principal */
---color-azul-escuro: #005dc0  /* Azul escuro (hover) */
---color-background:  #ececec  /* Fundo cinza claro */
---degrade-verde: linear-gradient(to right, #00ac4e, #005e2a)
-```
-
-### Menu de Navegação
-
-O menu possui 4 categorias com cores distintas e submenus dropdown por hover:
-
-| Categoria | Cor de Fundo | Cor da Borda |
-|---|---|---|
-| Questões | `#f8c578` (âmbar) | `#d47f00` |
-| Avaliações | `#77ff8e` (verde claro) | `#009919` |
-| Correções | `#cfb1ff` (lilás) | `#4d00c9` |
-| Relatórios | `#ffa8a8` (rosa) | `#a50000` |
-
-### Responsividade
-
-- Breakpoint principal: `max-width: 650px`
-- Rodapé muda para layout em coluna em telas pequenas
-- Textos e imagens do card de usuário são reduzidos em telas pequenas
 
 ---
 
 ## Observações de Segurança
 
-> ⚠️ Este projeto está em fase de desenvolvimento. Os itens abaixo **precisam ser corrigidos antes de qualquer uso em produção:**
+> Este projeto é um protótipo acadêmico. Os itens abaixo precisam ser resolvidos antes de qualquer uso em produção:
 
-1. **Credenciais hardcoded** — O arquivo `validacaoLogin.js` contém CPF e senha em texto puro no código-fonte do cliente. Qualquer pessoa pode ver as credenciais inspecionando o código no navegador.
-
-2. **Autenticação sem backend** — A validação de login é feita inteiramente no frontend (JavaScript), o que não oferece nenhuma segurança real.
-
-3. **Caminho absoluto hardcoded** — Em `gerarProvas/app.py`, o logo da SEDUC usa um caminho local fixo (`C:\Users\70555119173\Documents\...`), o que impede o funcionamento em qualquer outro ambiente.
-
-4. **CORS aberto** — `Flask-CORS` está configurado sem restrições de origem, aceitando requisições de qualquer domínio.
-
-5. **Gabarito fixo** — As respostas corretas (`["1-C","2-B","3-D","4-A","5-C"]`) estão hardcoded nos scripts Python. Devem ser dinâmicas e vinculadas à prova correspondente.
+1. **Credenciais hardcoded** — CPF e senha estão fixos no frontend. Qualquer pessoa pode visualizá-los inspecionando o código.
+2. **Autenticação sem backend** — A validação de login é feita no React sem verificação server-side.
+3. **CORS aberto** — Flask-CORS aceita requisições de qualquer origem.
+4. **Gabarito fixo** — As respostas corretas estão hardcoded no servidor de correção.
 
 ---
 
 ## Melhorias Futuras
 
-- [ ] Implementar autenticação segura com backend (JWT ou sessões)
-- [ ] Criar banco de dados (SQLite ou PostgreSQL) para armazenar provas, questões, alunos e resultados
-- [ ] Tornar o gabarito dinâmico: vincular respostas corretas à prova gerada
-- [ ] Finalizar as telas do menu (questões, relatórios, histórico)
-- [ ] Adicionar leitura de QR Code no fluxo de correção para identificar automaticamente o aluno
-- [ ] Unificar os dois servidores Flask em uma única aplicação
-- [ ] Adicionar testes automatizados (pytest)
+- [ ] Autenticação segura com backend (JWT)
+- [ ] Banco de dados relacional (SQLite → PostgreSQL)
+- [ ] Gabarito dinâmico vinculado à prova gerada
+- [ ] Implementar telas em desenvolvimento (consulta, relatórios, histórico)
+- [ ] Leitura de QR Code para identificar o aluno automaticamente na correção
+- [ ] Testes automatizados (pytest + Vitest)
 - [ ] Dockerizar a aplicação para facilitar o deploy
-- [ ] Implementar sistema de turmas e matrícula de alunos
-- [ ] Exportar relatórios de desempenho em PDF ou Excel
+
+---
+
+## Documentação
+
+| Documento | Descrição |
+|---|---|
+| [`docs/arquitetura.md`](./docs/arquitetura.md) | Modelo arquitetural, justificativa e decisões técnicas |
+| [`docs/c4-documentacao.md`](./docs/c4-documentacao.md) | Diagramas C4 (Contexto, Container, Componente) |
+| [`docs/historia-de-usuario.md`](./docs/historia-de-usuario.md) | HU-01: Cadastrar Questão (implementação completa) |
+| [`docs/como-rodar.md`](./docs/como-rodar.md) | Guia de instalação e execução |
 
 ---
 
 ## Autor
 
 **Vinícius Soares Castro**
-GEIT — Gerência em Infraestrutura e Tecnologia
-Secretaria de Educação do Estado de Goiás (SEDUC-GO)
-
----
-
-## Licença
-
-Projeto de uso institucional — SEDUC-GO. Consulte o responsável pelo repositório para informações sobre licenciamento.
+Universidade Federal de Goiás — Disciplina de Arquitetura de Software (2026/1)
+SEDUC-GO — Secretaria de Educação do Estado de Goiás
 
 ---
 

@@ -1,0 +1,24 @@
+[
+  {
+    "id": "ad87a893-fac6-4ec0-9ff7-36cf085f0d64",
+    "enunciado": "aaaaa",
+    "tipo": "multipla_escolha",
+    "alternativas": [
+      {
+        "texto": "a"
+      },
+      {
+        "texto": "b"
+      },
+      {
+        "texto": "c"
+      },
+      {
+        "texto": "d"
+      }
+    ],
+    "gabarito": 0,
+    "disciplina": "Matemática",
+    "nivel": "medio"
+  }
+]

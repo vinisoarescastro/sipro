@@ -1,0 +1,37 @@
+@startuml C4_Component_SIPRO
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Diagrama de Componentes — API de Questoes e Avaliacoes (SIPRO)
+
+Container_Ext(frontend, "Frontend React (SPA)", "React 18 + TypeScript", "Interface do usuario. Chama a API via fetch().")
+ContainerDb_Ext(dados_json, "Armazenamento JSON", "Arquivo questoes.json", "Persiste questoes no sistema de arquivos.")
+
+Container_Boundary(api, "API de Questoes e Avaliacoes — porta 5001 (python/questoes/app.py)") {
+
+    Component(cors_middleware, "CORS Middleware", "Flask-CORS", "Adiciona cabecalhos CORS a todas as respostas para permitir requisicoes do frontend na porta 3000.")
+
+    Component(router, "Router Flask", "Flask Routes", "Registra e despacha rotas HTTP para os controladores corretos com base no metodo e caminho.")
+
+    Component(ctrl_questao, "Controlador de Questoes", "Python", "Trata GET/POST /questoes e GET/PUT/DELETE /questoes/<id>. Valida payload com _validate() e delega ao repositorio.")
+
+    Component(ctrl_pdf, "Controlador de PDF", "Python", "Trata POST /gerar-prova. Recebe dados da avaliacao, aciona o gerador e retorna o arquivo PDF como download.")
+
+    Component(validador, "Validador de Questoes", "Python (_validate)", "Verifica obrigatoriedade de campos, tipo valido, quantidade de alternativas (2-5) e indice de gabarito.")
+
+    Component(repo_questao, "Repositorio de Questoes", "Python (_load/_save)", "Le e grava o arquivo questoes.json. Unica funcao que acessa o sistema de arquivos.")
+
+    Component(gerador_pdf, "Gerador de PDF", "Python, FPDF (_PDF / _gerar_pdf)", "Cria o PDF da avaliacao com cabecalho institucional, logo SEDUC-GO, enunciados e alternativas formatados.")
+}
+
+Rel(frontend, cors_middleware, "Envia requisicoes HTTP", "HTTP/REST JSON")
+Rel(cors_middleware, router, "Repassa requisicao apos validacao CORS")
+Rel(router, ctrl_questao, "Roteia /questoes e /questoes/<id>")
+Rel(router, ctrl_pdf, "Roteia /gerar-prova")
+Rel(ctrl_questao, validador, "Valida payload antes de persistir")
+Rel(ctrl_questao, repo_questao, "Le e grava questoes")
+Rel(repo_questao, dados_json, "I/O de arquivo", "JSON")
+Rel(ctrl_pdf, gerador_pdf, "Solicita geracao do PDF com os dados da avaliacao")
+
+@enduml

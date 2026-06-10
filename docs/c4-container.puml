@@ -1,0 +1,35 @@
+@startuml C4_Container_SIPRO
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Diagrama de Containers — SIPRO (Sistema de Provas)
+
+Person(professor, "Professor / Coordenador", "Gerencia questoes, cria provas e acessa correcoes.")
+
+System_Boundary(sipro, "SIPRO") {
+
+    Container(frontend, "Aplicacao Web (Frontend)", "React 18, TypeScript, Vite (SPA)", "Single Page Application. Renderiza login, dashboard, cadastro de questoes, criacao de avaliacoes e correcao automatica. Navegacao dinamica sem recarregamento de pagina.")
+
+    Container(api_questoes, "API de Questoes e Avaliacoes", "Python 3, Flask, FPDF", "Expoe endpoints REST para CRUD de questoes (porta 5001) e geracao de PDF de avaliacoes com cabecalho institucional.")
+
+    Container(api_correcao, "API de Correcao Automatica", "Python 3, Flask, OpenCV", "Recebe imagem do gabarito via camera, processa com visao computacional e retorna a pontuacao do aluno (porta 5000).")
+
+    ContainerDb(dados_json, "Armazenamento de Dados", "Arquivos JSON", "Persiste questoes em questoes.json no sistema de arquivos do servidor.")
+
+    Container(modulo_visao, "Modulo de Visao Computacional", "Python, OpenCV, NumPy", "Processa imagens do gabarito: binarizacao, deteccao de contornos e leitura de marcacoes.")
+
+    Container(gerador_qr, "Modulo Gerador de QR Code", "Python, qrcode", "Gera QR Codes com dados de identificacao para inclusao nas provas impressas.")
+}
+
+System_Ext(impressora, "Sistema de Impressao", "Imprime as provas geradas em PDF.")
+
+Rel(professor, frontend, "Acessa via navegador", "HTTP")
+Rel(frontend, api_questoes, "CRUD de questoes, criacao de avaliacoes e geracao de PDF", "HTTP/REST JSON")
+Rel(frontend, api_correcao, "Envia imagem do gabarito capturada pela camera", "HTTP/REST Base64")
+Rel(api_questoes, dados_json, "Le e grava questoes", "I/O de arquivo")
+Rel(api_questoes, gerador_qr, "Solicita QR Codes para inclusao no PDF")
+Rel(api_correcao, modulo_visao, "Delega processamento de imagem")
+Rel(api_questoes, impressora, "PDF disponibilizado para download", "HTTP")
+
+@enduml
